@@ -1,4 +1,5 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
+import { Kid } from 'src/api/kid/entities/kid.entity';
 import { AppBaseEntity } from 'src/common/database/entity/app-base.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
 
@@ -53,4 +54,7 @@ export class Class extends AppBaseEntity {
     nullable: true,
   })
   description: string;
+
+  @OneToMany(() => Kid, (aKid: Kid) => aKid.class, {})
+  kids: Kid[];
 }

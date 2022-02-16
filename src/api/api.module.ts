@@ -5,11 +5,13 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path';
 import { DatabaseModule } from 'src/common/database/database.module';
 import { ClassModule } from './class/class.module';
+import { KidModule } from './kid/kid.module';
 
 @Module({
   imports: [
     DatabaseModule,
     ClassModule,
+    KidModule,
     GraphQLModule.forRootAsync<ApolloDriverConfig>({
       driver: ApolloDriver,
       useFactory: () => ({
@@ -19,7 +21,7 @@ import { ClassModule } from './class/class.module';
     }),
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: process.env.NODE_ENV === 'prod' ? '.prod.env' : '.dev.env',
+      envFilePath: '.dev.env',
     }),
   ],
   controllers: [],
