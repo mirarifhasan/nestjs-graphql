@@ -5,7 +5,10 @@ import { KidRepository } from '../repositories/kid.repository';
 export class KidService {
   constructor(private kidRepository: KidRepository) {}
 
-  getKidById(id: number) {
-    return this.kidRepository.findOne({ where: { id } });
+  async getKidById(id: number) {
+    let kid = await this.kidRepository.findOne({ where: { id } });
+    console.log(kid);
+
+    return kid;
   }
 }

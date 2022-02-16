@@ -1,6 +1,7 @@
-import { NotFoundException } from '@nestjs/common';
+import { NotFoundException, UseGuards } from '@nestjs/common';
 import { Args, Int, Mutation, Parent, Query, ResolveField, Resolver, Subscription } from '@nestjs/graphql';
 import { Class } from 'src/api/class/entities/class.entity';
+import { MyFristGuard } from 'src/common/guards/my-first.guard';
 import { Kid } from '../entities/kid.entity';
 import { KidService } from '../services/kid.service';
 
@@ -9,19 +10,15 @@ export class KidResolver {
   constructor(private kidService: KidService) {}
 
   @Query((returns) => Kid)
+  @UseGuards(MyFristGuard)
   async getKidById(@Args('id', { type: () => Int }) id: number) {
-    console.log('id', id);
-
     let kid = await this.kidService.getKidById(id);
-    console.log(kid);
-
     return kid;
   }
 
   @ResolveField((returns) => Class)
   class(@Parent() kid: Kid) {
-    console.log('----------------');
-    console.log(kid);
+    console.log('ResolverField Calles');
 
     return {
       id: 3,

@@ -54,7 +54,11 @@ export class Kid extends AppBaseEntity {
   // })
   // settings: Object;
 
-  @Field(type => Class)
+  @Field()
+  @Column({ name: 'class_id' })
+  class_id: number;
+
+  @Field((type) => Class)
   @ManyToOne(() => Class, (aClass: Class) => aClass.kids, {})
   @JoinColumn({ name: 'class_id' })
   class: Class;
