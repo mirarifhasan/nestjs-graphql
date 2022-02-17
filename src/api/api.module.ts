@@ -17,6 +17,9 @@ import { KidModule } from './kid/kid.module';
       useFactory: () => ({
         playground: true,
         autoSchemaFile: true,
+        context: ({ req }) => {
+          return { request: req };
+        },
       }),
     }),
     ConfigModule.forRoot({
