@@ -15,7 +15,6 @@ function setupSwagger(app) {
   const config = new DocumentBuilder()
     .setTitle('Nest Boilerplate')
     .setDescription('API DOC')
-    .setContact('Md. Toufiqul Islam', '', 'toufiq.austcse@gmail.com')
     .setVersion('1.0')
     .build();
   let option: SwaggerCustomOptions = {
@@ -42,7 +41,7 @@ function setupSwagger(app) {
 async function bootstrap() {
   const app = await NestFactory.create(ApiModule);
   app.enableCors();
-  // app.setGlobalPrefix('api');
+  app.setGlobalPrefix('api');
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
@@ -50,7 +49,7 @@ async function bootstrap() {
       
     })
   );
-  // app.useGlobalFilters(new HttpExceptionFilter());
+  app.useGlobalFilters(new HttpExceptionFilter());
   // app.useGlobalInterceptors(new ResponseInterceptor());
   // app.useGlobalInterceptors(new HTTPLoggingInterceptor());
   let { PORT, NODE_ENV } = process.env;

@@ -12,7 +12,7 @@ export class MyFristGuard implements CanActivate {
     const request = ctx.getContext().request;
     // console.log('request', request);
 
-    const Authorization = request.get('a');
+    const Authorization = request.get('Authorization');
     console.log('Token:', Authorization);
 
     return true;

@@ -7,5 +7,6 @@ import { ClassService } from './services/class.service';
 @Module({
   imports: [TypeOrmModule.forFeature([ClassRepository])],
   providers: [ClassResolver, ClassService],
+  exports: [ClassService],
 })
 export class ClassModule {}

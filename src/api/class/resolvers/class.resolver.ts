@@ -1,5 +1,4 @@
 import { CreateClassReqDto } from './../dtos/request/create-class-req.dto';
-import { NotFoundException } from '@nestjs/common';
 import { Args, Int, Mutation, Query, Resolver, Subscription } from '@nestjs/graphql';
 import { Class } from '../entities/class.entity';
 import { ClassService } from '../services/class.service';
